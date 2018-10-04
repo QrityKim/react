@@ -49,7 +49,7 @@ class Counter extends Component {
     console.log("shouldComponentUpdate");
     if (nextState.number % 5 === 0) return false;
     return true;
-  } // 부
+  } //부모 컴포넌트가 랜더링되어도 현재 컴포넌트는 랜더링 되지 않는다. (false 일때)
 
   // componentWillUpdate(nextProps, nextState) {
   //   console.log("componentWillUpdate (deprecated)");

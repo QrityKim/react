@@ -3,6 +3,7 @@ import Counter from "./Counter"
 import MyName from "./MyName"
 import logo from './logo.svg';
 import './App.css';
+import PhoneForm from "./components/PhoneForm";
 // 이렇게 import할 수 있는 이유는 webpack
 // 을 사용하기 때문인데 webpack은 나중에 빌드
 // 단계에서 파일의 확장자별로 다른 동작을 한다.
@@ -17,6 +18,9 @@ import './App.css';
 //
 
 class App extends Component {
+  handleCreate = (data) => {
+    console.log(data);
+  }
   render() {
     return (
       <div className="App">
@@ -31,6 +35,11 @@ class App extends Component {
         <button type="submit">submit</button>
         <MyName name="react" />
         <Counter />
+        <div>
+          <PhoneForm
+            onCreate={this.handleCreate}
+          />
+        </div>
       </div>
     );
   }
