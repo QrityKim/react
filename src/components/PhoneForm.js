@@ -1,10 +1,20 @@
 import React, { Component } from "react";
 
 class PhoneForm extends Component {
+  constructor() {
+    super();
+    console.log("constructor");
+  }
   state = {
     name: '',
     phone: ''
   }
+
+  componentDidMount() {
+    console.log("componentDidMount");
+  }
+
+
 
   handleChange = (e) => {
     this.setState({
