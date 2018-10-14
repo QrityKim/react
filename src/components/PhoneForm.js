@@ -14,8 +14,6 @@ class PhoneForm extends Component {
     console.log("componentDidMount");
   }
 
-
-
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -24,7 +22,11 @@ class PhoneForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    // submit버튼의 기본동작(페이지 새로고침)
+    // 을 방지한다.
     this.props.onCreate(this.state);
+    // 부모 컴포넌트로부터 받아온 함수에 자식컴포넌트
+    // 즉 현재 컴포넌트의 state를 전달한다.
     this.setState({
       name: '',
       phone: ''
@@ -32,7 +34,13 @@ class PhoneForm extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
+    console.log("getDerivedStateFromProps");
     console.log(prevState);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("shouldComponentUpdate");
+    return true;
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
@@ -43,13 +51,16 @@ class PhoneForm extends Component {
     console.log("componentDidUpdate");
   }
   render() {
+    console.log("render");
     return (
       <form onSubmit={this.handleSubmit}>
+      {/*submit 함수를 따로 만들어 바인딩*/}
         <input
           placeholder="이름"
           value={this.state.name}
           onChange={this.handleChange}
-          name="name"
+          name="name" // state로 보내지는
+          // 객체의 프로퍼티명
         />
         <input
           placeholder="전화번호"

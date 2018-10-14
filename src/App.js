@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Counter from "./Counter"
-import MyName from "./MyName"
+import Counter from "./Counter";
+import MyName from "./MyName";
 import logo from './logo.svg';
 import './App.css';
 import PhoneForm from "./components/PhoneForm";
+import PhoneInfoList from "./components/PhoneInfoList";
 // 이렇게 import할 수 있는 이유는 webpack
 // 을 사용하기 때문인데 webpack은 나중에 빌드
 // 단계에서 파일의 확장자별로 다른 동작을 한다.
@@ -18,10 +19,45 @@ import PhoneForm from "./components/PhoneForm";
 //
 
 class App extends Component {
+  id = 2
+  state = {
+    information: [
+      {
+        id: 0,
+        name: "k",
+        phone: "010-0000-0000"
+      },
+      {
+        id: 1,
+        name: "l",
+        phone: "010-0000-0001"
+      }
+    ]
+  }
   handleCreate = (data) => {
-    console.log(data);
+    const { information } = this.state;
+    this.setState({
+      information: information.concat({ id: this.id++, ...data })
+    })
+    // console.log(data);
+  }
+  handleRemove = (id) => {
+    const { information } = this.state;
+    this.setState({
+      information: information.filter(info => info.id !== id)
+    })
+  }
+  handleUpdate = (id, data) => {
+    const { information } = this.state;
+    this.setState({
+      information: information.map(
+        info => id === info.id ?
+        { ...info, ...data } : info
+      )
+    })
   }
   render() {
+    const { information } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -38,6 +74,11 @@ class App extends Component {
         <div>
           <PhoneForm
             onCreate={this.handleCreate}
+          />
+          <PhoneInfoList
+            data={this.state.information}
+            onRemove={this.handleRemove}
+            onUpdate={this.handleUpdate}
           />
         </div>
       </div>
