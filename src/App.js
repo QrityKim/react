@@ -5,6 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 import PhoneForm from "./components/PhoneForm";
 import PhoneInfoList from "./components/PhoneInfoList";
+import ValidationSample from "./components/ValidationSample";
 // 이렇게 import할 수 있는 이유는 webpack
 // 을 사용하기 때문인데 webpack은 나중에 빌드
 // 단계에서 파일의 확장자별로 다른 동작을 한다.
@@ -32,7 +33,13 @@ class App extends Component {
         name: "l",
         phone: "010-0000-0001"
       }
-    ]
+    ],
+    keyword: ""
+  }
+  handleChange = (e) => {
+    this.setState({
+      keyword: e.target.value,
+    });
   }
   handleCreate = (data) => {
     const { information } = this.state;
@@ -57,7 +64,10 @@ class App extends Component {
     })
   }
   render() {
-    const { information } = this.state;
+    const { information, keyword } = this.state;
+    const filteredList = information.filter(
+      info => info.name.indexOf(keyword) !== -1
+    );
     return (
       <div className="App">
         <header className="App-header">
@@ -75,12 +85,21 @@ class App extends Component {
           <PhoneForm
             onCreate={this.handleCreate}
           />
+          <p>
+            <input
+              placeholder="검색 할 이름을 입력하세요"
+              onChange={this.handleChange}
+              value={keyword}
+            />
+          </p>
+          <hr />
           <PhoneInfoList
-            data={this.state.information}
+            data={filteredList}
             onRemove={this.handleRemove}
             onUpdate={this.handleUpdate}
           />
         </div>
+        <ValidationSample />
       </div>
     );
   }

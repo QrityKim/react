@@ -35,7 +35,6 @@ class PhoneForm extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     console.log("getDerivedStateFromProps");
-    console.log(prevState);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
