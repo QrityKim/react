@@ -23,20 +23,24 @@ class ValidationSample extends Component {
   }
 
   render() {
+
+    const inputStyle = {
+      padding: "10px"
+    };
+
     return (
-      <div>
+      <div style={inputStyle}>
         <input
+          ref={(ref) => this.input=ref}
           type="password"
           value={this.state.password}
           onChange={this.handleChange}
-          className={this.state.clicked ?
-          (this.state.validated ? "sucess" : "failure")
-          : ""}
-          ref={(ref) => {this.input=ref}}
+          className={this.state.clicked ? (this.state.validated ?
+          "sucess" : "failure") : ""}
         />
-        <button onClick={this.handleButtonClick}>검증하기</button>
+        <button onClick={this.handleButtonClick}>검증</button>
       </div>
-    );
+    )
   }
 }
 

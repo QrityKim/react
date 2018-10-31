@@ -6,6 +6,9 @@ import './App.css';
 import PhoneForm from "./components/PhoneForm";
 import PhoneInfoList from "./components/PhoneInfoList";
 import ValidationSample from "./components/ValidationSample";
+import ScrollBox from "./components/ScrollBox";
+import IterationSample from "./components/IterationSample";
+
 // 이렇게 import할 수 있는 이유는 webpack
 // 을 사용하기 때문인데 webpack은 나중에 빌드
 // 단계에서 파일의 확장자별로 다른 동작을 한다.
@@ -68,6 +71,7 @@ class App extends Component {
     const filteredList = information.filter(
       info => info.name.indexOf(keyword) !== -1
     );
+
     return (
       <div className="App">
         <header className="App-header">
@@ -100,6 +104,13 @@ class App extends Component {
           />
         </div>
         <ValidationSample />
+        <div>
+          <ScrollBox ref={(ref) => this.scrollBox=ref}/>
+          <button onClick={() => this.scrollBox.scrollToBottom()}>
+            맨 밑으로
+          </button>
+        </div>
+        <IterationSample />
       </div>
     );
   }
