@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import Counter from "./Counter";
 import MyName from "./MyName";
 import logo from './logo.svg';
-import './App.css';
+import AppStyle from './App.css';
 import PhoneForm from "./components/PhoneForm";
 import PhoneInfoList from "./components/PhoneInfoList";
 import ValidationSample from "./components/ValidationSample";
 import ScrollBox from "./components/ScrollBox";
 import IterationSample from "./components/IterationSample";
+import styles from "./Boxing.scss";
+import classNames from "classnames/bind";
+const cn = classNames.bind(AppStyle);
+const bs = classNames.bind(styles);
 
 // 이렇게 import할 수 있는 이유는 webpack
 // 을 사용하기 때문인데 webpack은 나중에 빌드
@@ -71,14 +75,15 @@ class App extends Component {
     const filteredList = information.filter(
       info => info.name.indexOf(keyword) !== -1
     );
+    const isBlue = true;
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+      <div className={cn("App")}>
+        <header className={cn("App-header")}>
+          <img src={logo} className={cn("App-logo")} alt="logo" />
+          <h1 className={cn("App-title")}>Welcome to React</h1>
         </header>
-        <p className="App-intro">
+        <p className={cn("App-intro")}>
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <input type="text" name="" value="d" />
@@ -111,6 +116,11 @@ class App extends Component {
           </button>
         </div>
         <IterationSample />
+        <div className={bs("box", {
+          blue: isBlue
+        })}>
+          <div className={bs("box-inside")}/>
+        </div>
       </div>
     );
   }
