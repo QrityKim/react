@@ -10,7 +10,8 @@ import ScrollBox from "./components/ScrollBox";
 import IterationSample from "./components/IterationSample";
 import styles from "./Boxing.scss";
 import classNames from "classnames/bind";
-const cn = classNames.bind(AppStyle);
+import StyledButton from "./components/StyledButton";
+const an = classNames.bind(AppStyle);
 const bs = classNames.bind(styles);
 
 // 이렇게 import할 수 있는 이유는 webpack
@@ -78,12 +79,12 @@ class App extends Component {
     const isBlue = true;
 
     return (
-      <div className={cn("App")}>
-        <header className={cn("App-header")}>
-          <img src={logo} className={cn("App-logo")} alt="logo" />
-          <h1 className={cn("App-title")}>Welcome to React</h1>
+      <div className={an("App")}>
+        <header className={an("App-header")}>
+          <img src={logo} className={an("App-logo")} alt="logo" />
+          <h1 className={an("App-title")}>Welcome to React</h1>
         </header>
-        <p className={cn("App-intro")}>
+        <p className={an("App-intro")}>
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <input type="text" name="" value="d" />
@@ -91,6 +92,7 @@ class App extends Component {
         <MyName name="react" />
         <Counter />
         <div>
+
           <PhoneForm
             onCreate={this.handleCreate}
           />
@@ -121,6 +123,7 @@ class App extends Component {
         })}>
           <div className={bs("box-inside")}/>
         </div>
+        <StyledButton>버튼</StyledButton>
       </div>
     );
   }
